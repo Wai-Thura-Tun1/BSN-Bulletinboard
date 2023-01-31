@@ -1,0 +1,21 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Bulletinboard.Front.AppControls"
+    >
+
+    <ResourceDictionary.MergedDictionaries>
+
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iFunctionButton.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iTextBox.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iNumericTextBox.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iDatePicker.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iDataGridDatePicker.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iComboBox.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iDataGrid.xaml"/>
+        <ResourceDictionary Source="/AppControls;component/ComponentResource/iListView.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+
+
+</ResourceDictionary>

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\img_arrow.png" />
+    <None Remove="Assets\img_exit.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppControls\AppControls.csproj" />
+    <ProjectReference Include="..\AppLibrary\AppLibrary.csproj" />
+    <ProjectReference Include="..\CommonLibrary\CommonLibrary\CommonLibrary.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\img_arrow.png" />
+    <Resource Include="Assets\img_exit.png" />
+  </ItemGroup>
+
+</Project>

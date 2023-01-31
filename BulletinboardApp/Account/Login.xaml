@@ -1,0 +1,35 @@
+﻿<ictrl:iWindow x:Class="BulletinboardApp.Account.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BulletinboardApp.Account"
+        xmlns:ictrl="clr-namespace:Bulletinboard.Front.AppControls;assembly=AppControls"
+        d:DataContext="{d:DesignInstance Type=local:LoginViewModel}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        IsDisplayClosingMessage="False"
+        ResizeMode="NoResize"
+        Title="Login" Height="280" Width="400">
+    <Grid FocusManager.FocusedElement="{Binding ElementName=TxtEmail}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ictrl:iItemTitile Text="Email"/>
+            <TextBox Margin="20,0,0,0" x:Name="TxtEmail"  Padding="5"  Height="30" Width="200" Text="{Binding Path=Email}" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ictrl:iItemTitile Text="Password"/>
+            <PasswordBox Margin="20,0,0,0" x:Name="TxtPass" Padding="5" Height="30" Width="200" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <Button Content="Login" Width="100" Height="30" Command="{Binding Path=LoginCommand}" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</ictrl:iWindow>

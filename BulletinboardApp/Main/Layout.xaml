@@ -1,0 +1,91 @@
+﻿<ictrl:iWindow x:Class="BulletinboardApp.Main.Layout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BulletinboardApp.Main"
+        xmlns:dc ="clr-namespace:BulletinboardApp"
+        xmlns:ictrl="clr-namespace:Bulletinboard.Front.AppControls;assembly=AppControls" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        IsDisplayClosingMessage="False"
+        WindowState="Maximized"
+        mc:Ignorable="d"
+        Background="White"
+        Title="Layout" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:ColorZone Mode="PrimaryMid" Grid.ColumnSpan="2" Background="#3b97d4" VerticalAlignment="Center">
+            <Grid>
+                <materialDesign:PopupBox Foreground="White" PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Right" Margin="20">
+                    <StackPanel>
+                        <Button x:Name="profileBtn" Content="Profile" FontSize="14" Click="ProfileBtn_Clicked"/>
+                        <Button x:Name="resetPassBtn" Content="Change Password" FontSize="14" Click="ChangePassBtn_Clicked"/>
+                        <Separator/>
+                        <Button x:Name="logoutBtn" Content="Logout" FontSize="14" Click="PopupLogout_Clicked"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </Grid>
+        </materialDesign:ColorZone>
+        <StackPanel
+            Width="250"
+            HorizontalAlignment="Left"
+            Background="#3b97d4"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            >
+            <Menu Margin="0,65,0,0">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"></VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="User" x:Name="menuUserCon" Template="{StaticResource Menu_SubMenu_Template}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="AccountMultiple" Foreground="#FFF" Width="30" Height="30"></materialDesign:PackIcon>
+                    </MenuItem.Icon>
+                    <MenuItem x:Name="menuUserList" Header="User List" Template="{StaticResource Item_Template}" Click="UserList_Clicked">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="CheckboxBlankCircleOutline" Foreground="#FFF" Width="20" Height="20" Margin="5"></materialDesign:PackIcon>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="menuUserCreate" Header="Create User" Template="{StaticResource Item_Template}" Click="CreateUserBtn_Clicked" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="CheckboxBlankCircleOutline" Foreground="#FFF" Width="20" Height="20" Margin="5"></materialDesign:PackIcon>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="Post" Template="{StaticResource Menu_SubMenu_Template}">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Post" Foreground="#FFF" Width="30" Height="30"></materialDesign:PackIcon>
+                    </MenuItem.Icon>
+                    <MenuItem x:Name="menuPostList" Header="Post List" Template="{StaticResource Item_Template}" Click="PostListBtn_Clicked" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="CheckboxBlankCircleOutline" Foreground="#FFF" Width="20" Height="20" Margin="5"></materialDesign:PackIcon>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="menuPostCreate" Header="Create Post" Template="{StaticResource Item_Template}" Click="CreatePost_Clicked">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="CheckboxBlankCircleOutline" Foreground="#FFF" Width="20" Height="20" Margin="5"></materialDesign:PackIcon>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem x:Name="menuLogout" Foreground="White" Header="Log out" Template="{StaticResource Menu_Template}" Click="LogoutBtn_Clicked">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Logout" Foreground="#FFF" Width="30" Height="30" Margin="3"></materialDesign:PackIcon>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <Frame x:Name="menuLayout" Grid.Column="1" Source="{Binding Path=PagePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</ictrl:iWindow>
