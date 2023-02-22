@@ -17,7 +17,7 @@ public partial class BsnbulletinboardContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=WAITHURATUN-PC\\SQL2019;Database=BSNBulletinboard;Trusted_Connection=False;User Id=sa;Password=root;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=P-000238;Database=BSNBulletinboard;Trusted_Connection=False;User Id=sa;Password=root;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

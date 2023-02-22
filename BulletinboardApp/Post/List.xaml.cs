@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BulletinboardApp.Post
@@ -32,7 +33,9 @@ namespace BulletinboardApp.Post
         {
             if (postDataGrid.CurrentItem is PostModel postModel)
             {
-                this.NavigationService.Navigate(new BulletinboardApp.Post.Edit(postModel.Id));
+                Application.Current.Properties["id"] = postModel.Id;
+                Uri pathUri = new Uri("../Post/Edit.xaml",UriKind.Relative);
+                this.NavigationService.Navigate(pathUri);
             }
         }
     }

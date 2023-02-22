@@ -1,4 +1,5 @@
 ﻿using Bulletinboard.Front.AppLibrary;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -37,7 +38,9 @@ namespace BulletinboardApp.User
         /// <param name="e"></param>
         private void ProfileEditBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new BulletinboardApp.User.Edit(this.id));
+            Application.Current.Properties["id"] = this.id;
+            Uri pathUri = new Uri("User/Edit.xaml", UriKind.Relative);
+            this.NavigationService.Navigate(pathUri);
         }
     }
 }

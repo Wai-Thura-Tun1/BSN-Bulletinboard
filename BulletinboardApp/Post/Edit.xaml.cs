@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace BulletinboardApp.Post
 {
@@ -11,9 +12,10 @@ namespace BulletinboardApp.Post
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
-        public Edit(int id)
+        public Edit()
         {
             InitializeComponent();
+            int id = (int)Application.Current.Properties["id"];
             vm = new PostViewModel(id);
             this.DataContext = vm;
         }

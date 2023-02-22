@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using Microsoft.AspNetCore.Components.Routing;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BulletinboardApp.User
 {
@@ -7,17 +10,19 @@ namespace BulletinboardApp.User
     /// </summary>
     public partial class Edit : Page
     {
+      
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="id"></param>
-        public Edit(int id)
+        public Edit()
         {
             InitializeComponent();
+            int id = (int)Application.Current.Properties["id"];
             vm = new UserViewModel(id);
             this.DataContext = vm;
 
         }
+
 
         /// <summary>
         /// Constructor

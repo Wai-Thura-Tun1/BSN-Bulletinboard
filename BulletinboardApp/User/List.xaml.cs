@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using AppLibrary;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BulletinboardApp.User
@@ -33,7 +35,8 @@ namespace BulletinboardApp.User
             UserModel userModel = (UserModel)this.userDataGrid.CurrentItem as UserModel;
             if (userModel != null)
             {
-                this.NavigationService.Navigate(new BulletinboardApp.User.Edit(userModel.Id));
+                Application.Current.Properties["id"] = userModel.Id;
+                this.NavigationService.Navigate(iNavigation.USER_EDIT);
             }
         }
     }
