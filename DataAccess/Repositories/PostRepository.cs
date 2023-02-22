@@ -1,5 +1,6 @@
 ﻿using Bulletinboard.Back.DataAccess;
 using Bulletinboard.Back.DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace DataAccess.Repositories
@@ -9,7 +10,7 @@ namespace DataAccess.Repositories
         /// <summary>
         /// Define datacontext for posts table
         /// </summary>
-        private DataContext<Post> _dataContext;
+        private readonly DataContext<Post> _dataContext;
 
         /// <summary>
         /// Constructor
@@ -30,38 +31,36 @@ namespace DataAccess.Repositories
         {
             try
             {
-                using(var _context = new BsnbulletinboardContext())
+                using var _context = new BsnbulletinboardContext();
+                var query = await (from p in _context.Posts
+                                   join u in _context.Users on p.CreatedUserId equals u.Id.ToString()
+                                   where p.IsDeleted == false
+                                   orderby p.Id descending
+                                   select new Model.Post
+                                   {
+                                       Id = p.Id,
+                                       Title = p.Title,
+                                       Description = p.Description,
+                                       SPublished = p.IsPublished ? "Published" : "Unpublished",
+                                       CreatedAt = p.CreatedDate.ToString("MM/dd/yyyy"),
+                                       CreatedBy = u.FirstName + " " + u.LastName,
+                                       CreatedUserId = p.CreatedUserId,
+                                   }).ToListAsync();
+                if (!string.IsNullOrEmpty(searchString))
                 {
-                    var query = (from p in _context.Posts
-                                 join u in _context.Users on p.CreatedUserId equals u.Id.ToString()
-                                 where p.IsDeleted == false
-                                 orderby p.Id descending
-                                 select new Model.Post
-                                 {
-                                     Id = p.Id,
-                                     Title = p.Title,
-                                     Description = p.Description,
-                                     SPublished = p.IsPublished ? "Published" : "Unpublished",
-                                     CreatedAt = p.CreatedDate.ToString("MM/dd/yyyy"),
-                                     CreatedBy = u.FirstName + " " + u.LastName,
-                                     CreatedUserId = p.CreatedUserId,
-                                 }).ToList();
-                    if(!string.IsNullOrEmpty(searchString))
-                    {
-                        string keyword = searchString.ToLower();
-                        query = query.Where(x =>
-                        x.Title.ToLower().Contains(keyword) ||
-                        x.Description.ToLower().Contains(keyword) ||
-                        x.SPublished.ToLower().Contains(keyword) ||
-                        x.CreatedBy.ToLower().Contains(keyword)
-                        ).ToList();
-                    }
-                    return query;
+                    string keyword = searchString.ToLower();
+                    query = query.Where(x =>
+                    x.Title.ToLower().Contains(keyword) ||
+                    x.Description.ToLower().Contains(keyword) ||
+                    x.SPublished.ToLower().Contains(keyword) ||
+                    x.CreatedBy.ToLower().Contains(keyword)
+                    ).ToList();
                 }
+                return query;
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return new List<Model.Post>();
             }
         } 
@@ -77,26 +76,24 @@ namespace DataAccess.Repositories
         {
             try
             {
-                using(var _context = new BsnbulletinboardContext())
+                using var _context = new BsnbulletinboardContext();
+                Post post = new()
                 {
-                    Post post = new()
-                    {
-                        Title = obj.Title,
-                        Description = obj.Description,
-                        IsPublished = obj.IsPublished,
-                        IsDeleted = false,
-                        CreatedDate = DateTime.Now,
-                        CreatedUserId = obj.CreatedUserId
-                    };
-                    _context.Posts.Add(post);
-                    _context.SaveChanges();
-                    return iConstance.RESULT_SUCCESS;
-                }
+                    Title = obj.Title,
+                    Description = obj.Description,
+                    IsPublished = obj.IsPublished,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now,
+                    CreatedUserId = obj.CreatedUserId
+                };
+                _context.Posts.Add(post);
+                await _context.SaveChangesAsync();
+                return iConstance.RESULT_SUCCESS;
 
             }
             catch (Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -129,7 +126,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return new Model.Post();
             }
         }
@@ -166,7 +163,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -182,30 +179,28 @@ namespace DataAccess.Repositories
         {
             try
             {
-                using(var context = new BsnbulletinboardContext())
+                using var context = new BsnbulletinboardContext();
+                List<Post> posts = new();
+                foreach (var post in postList)
                 {
-                    List<Post> posts = new();
-                    foreach(var post in postList)
+                    Post addPost = new Post()
                     {
-                        Post addPost = new Post()
-                        {
-                            Title = post.Title,
-                            Description = post.Description,
-                            IsPublished = post.IsPublished,
-                            IsDeleted = false,
-                            CreatedDate = DateTime.Now,
-                            CreatedUserId = post.CreatedUserId,
-                        };
-                        posts.Add(addPost);
-                    }
-                    context.Posts.AddRange(posts);
-                    context.SaveChanges();
-                    return iConstance.RESULT_SUCCESS;
+                        Title = post.Title,
+                        Description = post.Description,
+                        IsPublished = post.IsPublished,
+                        IsDeleted = false,
+                        CreatedDate = DateTime.Now,
+                        CreatedUserId = post.CreatedUserId,
+                    };
+                    posts.Add(addPost);
                 }
+                context.Posts.AddRange(posts);
+                await context.SaveChangesAsync();
+                return iConstance.RESULT_SUCCESS;
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -221,24 +216,22 @@ namespace DataAccess.Repositories
         {
             try
             {
-                using(var _context = new BsnbulletinboardContext())
+                using var _context = new BsnbulletinboardContext();
+                var deletePost = await _dataContext.Select(x => x.Id == obj.Id);
+                if (deletePost != null)
                 {
-                    var deletePost = await _dataContext.Select(x => x.Id == obj.Id);
-                    if(deletePost != null)
-                    {
-                        deletePost.IsDeleted = true;
-                        deletePost.DeletedDate = DateTime.Now;
-                        deletePost.DeletedUserId = obj.DeletedUserId;
-                        _context.Posts.Update(deletePost);
-                        _context.SaveChanges();
-                        return iConstance.RESULT_SUCCESS;
-                    }
-                    return iConstance.RESULT_FAILURE;
+                    deletePost.IsDeleted = true;
+                    deletePost.DeletedDate = DateTime.Now;
+                    deletePost.DeletedUserId = obj.DeletedUserId;
+                    _context.Posts.Update(deletePost);
+                    _context.SaveChanges();
+                    return iConstance.RESULT_SUCCESS;
                 }
+                return iConstance.RESULT_FAILURE;
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -254,44 +247,42 @@ namespace DataAccess.Repositories
         {
             try
             {
-                using(var _context = new BsnbulletinboardContext())
+                using var _context = new BsnbulletinboardContext();
+                List<Model.Post> postList = new();
+                if (user.Role < 1)
                 {
-                    List<Model.Post> postList = new();
-                    if(user.Role < 1)
-                    {
-                        postList = (from p in _context.Posts
-                         where p.IsDeleted == false && p.CreatedUserId == user.Id.ToString()
-                         orderby p.Id descending
-                         select new Model.Post
-                         {
-                             Id = p.Id,
-                             Title = p.Title,
-                             Description = p.Description,
-                             SPublished = p.IsPublished ? "Published" : "Unpublished",
-                             IsPublished = p.IsPublished
-                         }).ToList();
-                    }
-                    else
-                    {
-                        postList = (from p in _context.Posts
-                                 where p.IsDeleted == false
-                                 orderby p.Id descending
-                                 select new Model.Post
-                                 {
-                                     Id = p.Id,
-                                     Title = p.Title,
-                                     Description = p.Description,
-                                     SPublished = p.IsPublished ? "Published" : "Unpublished",
-                                     IsPublished = p.IsPublished
-                                 }).ToList();
-                    }
-
-                    return postList;
+                    postList = await (from p in _context.Posts
+                                      where p.IsDeleted == false && p.CreatedUserId == user.Id.ToString()
+                                      orderby p.Id descending
+                                      select new Model.Post
+                                      {
+                                          Id = p.Id,
+                                          Title = p.Title,
+                                          Description = p.Description,
+                                          SPublished = p.IsPublished ? "Published" : "Unpublished",
+                                          IsPublished = p.IsPublished
+                                      }).ToListAsync();
                 }
+                else
+                {
+                    postList = await (from p in _context.Posts
+                                      where p.IsDeleted == false
+                                      orderby p.Id descending
+                                      select new Model.Post
+                                      {
+                                          Id = p.Id,
+                                          Title = p.Title,
+                                          Description = p.Description,
+                                          SPublished = p.IsPublished ? "Published" : "Unpublished",
+                                          IsPublished = p.IsPublished
+                                      }).ToListAsync();
+                }
+
+                return postList;
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return new List<Model.Post>();
             }
         }

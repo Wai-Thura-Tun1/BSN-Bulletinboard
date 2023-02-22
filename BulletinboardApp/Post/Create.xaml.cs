@@ -17,9 +17,7 @@ namespace BulletinboardApp.Post
             this.DataContext = vm;
         }
 
-        /// <summary>
-        /// Define vm
-        /// </summary>
         private PostViewModel vm;
+
     }
 }

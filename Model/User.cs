@@ -105,17 +105,17 @@ namespace Model
         /// <summary>
         /// Define fullname
         /// </summary>
-        public string? FullName { get; set; }
+        public string FullName { get; set; }
 
         /// <summary>
         /// Define createduser
         /// </summary>
-        public string? CreatedUser { get; set; }
+        public string CreatedUser { get; set; }
 
         /// <summary>
         /// Define srole
         /// </summary>
-        public string? SRole { get; set; }
+        public string SRole { get; set; }
 
         /// <summary>
         /// Define sdob

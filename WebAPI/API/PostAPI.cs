@@ -25,7 +25,7 @@ namespace Bulletinboard.Back.WebAPI.API
                 return Unauthorized();
             }
             PostRepository postRepository = new();
-            return await postRepository.GetPostList(obj.Keyword);
+            return await postRepository.GetPostList(obj.Keyword ?? "");
         }
 
         /// <summary>

@@ -8,16 +8,17 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// <summary>
         /// Constructor
         /// </summary>
-        public Post()
-        {
-            this.ConstructModel();
-        }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public Post() => this.ConstructModel();
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="search"></param>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Post(string? search)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.ConstructModel();
             this.Keyword = search;
@@ -39,9 +40,9 @@ namespace Bulletinboard.Front.AppLibrary.Model
             this.UpdatedUserId = null;
             this.DeletedDate = null;
             this.DeletedUserId = null;
-            this.SPublished = null;
+            this.SPublished = string.Empty;
             this.CreatedAt = null;
-            this.CreatedBy = null;
+            this.CreatedBy = string.Empty;
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// <summary>
         /// Define spublished
         /// </summary>
-        public string? SPublished { get; set; }
+        public string SPublished { get; set; }
 
         /// <summary>
         /// Define createdat
@@ -112,7 +113,7 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// <summary>
         /// Define createdby
         /// </summary>
-        public string? CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
         /// Define keyword

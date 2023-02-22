@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Bulletinboard.Front.AppLibrary;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BulletinboardApp.User
@@ -11,12 +12,11 @@ namespace BulletinboardApp.User
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="id"></param>
-        public Profile(int id)
+        public Profile()
         {
             InitializeComponent();
-            this.id = id;
-            vm = new UserViewModel(id);
+            this.id = iAppSettings.LoginUser.Id;
+            vm = new UserViewModel(this.id);
             this.DataContext = vm;
         }
 
@@ -37,7 +37,7 @@ namespace BulletinboardApp.User
         /// <param name="e"></param>
         private void ProfileEditBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new BulletinboardApp.User.Edit(id));
+            this.NavigationService.Navigate(new BulletinboardApp.User.Edit(this.id));
         }
     }
 }

@@ -26,7 +26,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define title
         /// </summary>
-        private string _title;
+        private string _title = string.Empty;
         public string Title
         {
             get
@@ -43,7 +43,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define description
         /// </summary>
-        private string _description;
+        private string _description = string.Empty;
         public string Description
         {
             get
@@ -94,7 +94,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define createduserid
         /// </summary>
-        private string _createduserid;
+        private string _createduserid = string.Empty;
         public string CreatedUserId
         {
             get
@@ -111,7 +111,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define spublished
         /// </summary>
-        private string _spublished;
+        private string _spublished = string.Empty;
         public string SPublished
         {
             get
@@ -128,7 +128,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define createdat
         /// </summary>
-        private string _createdat;
+        private string _createdat = string.Empty;
         public string CreatedAt
         {
             get
@@ -145,7 +145,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define createdby
         /// </summary>
-        private string _createdby;
+        private string _createdby = string.Empty;
         public string CreatedBy
         {
             get
@@ -162,7 +162,7 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Define keyword
         /// </summary>
-        private string _keyword;
+        private string _keyword = string.Empty;
         public string Keyword
         {
             get

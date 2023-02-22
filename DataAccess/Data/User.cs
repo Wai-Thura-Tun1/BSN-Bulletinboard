@@ -10,27 +10,27 @@ namespace Bulletinboard.Back.DataAccess.Data
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(200)")]
-        public string PhoneNo { get; set; }
+        public string PhoneNo { get; set; } = string.Empty;
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string Address { get; set; }
+        public string Address { get; set; } = string.Empty;
 
         public DateTime? Dob { get; set; }
 
@@ -44,7 +44,7 @@ namespace Bulletinboard.Back.DataAccess.Data
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string CreatedUserId { get; set; }
+        public string CreatedUserId { get; set; } = string.Empty;
 
         public DateTime? UpdatedDate { get; set; }
 

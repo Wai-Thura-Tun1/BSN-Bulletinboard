@@ -23,7 +23,7 @@ namespace BulletinboardApp.ViewModels
         /// <summary>
         /// Define pagepath
         /// </summary>
-        private string _pagePath { get; set; }
+        private string _pagePath { get; set; } = "pack://application:,,,/User/List.xaml";
         public string PagePath
         {
             get

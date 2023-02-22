@@ -16,7 +16,7 @@ namespace Bulletinboard.Back.WebAPI.API
         /// The <see cref="Task{ActionResult{User?}}"/>
         /// </returns>
         [HttpPost("Login")]
-        public async Task<ActionResult<User?>> LoginAsync(User loginData)
+        public async Task<ActionResult<User>?> LoginAsync(User loginData)
         {
             Microsoft.Extensions.Primitives.StringValues requestHeaderKey;
             Request.Headers.TryGetValue(APISetting.KEY_APITOKEN, out requestHeaderKey);

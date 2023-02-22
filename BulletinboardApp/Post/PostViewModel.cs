@@ -14,6 +14,7 @@ using System;
 using OfficeOpenXml;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Shapes;
 
 namespace BulletinboardApp.Post
 {
@@ -22,7 +23,9 @@ namespace BulletinboardApp.Post
         /// <summary>
         /// Constructor
         /// </summary>
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public PostViewModel()
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             PostList = new ObservableCollection<PostModel>();
             Post = new PostModel();
@@ -34,7 +37,9 @@ namespace BulletinboardApp.Post
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public PostViewModel(int id)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Post = new PostModel();
             Initilized();
@@ -307,20 +312,16 @@ namespace BulletinboardApp.Post
         /// </summary>
         private async void DownloadPost()
         {
-            OpenFileDialog ofd = new();
-            ofd.Multiselect = false;
-            ofd.FileName = "";
-            ofd.Filter = "Folders|\n";
-            ofd.CheckPathExists = true;
-            ofd.CheckFileExists = false;
-            if(ofd.ShowDialog() == true)
+            var currentTime = DateTime.Now;
+            var fileName = "posts_" + currentTime.ToString("yyyyMMddHHmmss") + ".xlsx";
+            SaveFileDialog saveFileDialog = new()
             {
-                string path = ofd.FileName + ".xlsx";
-                if (File.Exists(path))
-                {
-                    Random random = new();
-                    path = ofd.FileName + random.Next(1, 999) + ".xlsx";
-                }
+                Filter = "Excel Worksheets (*.xlsx)|*.xlsx",
+                FileName = fileName,
+            };
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using(ExcelPackage excelPackage = new())
                 {
@@ -341,7 +342,7 @@ namespace BulletinboardApp.Post
                                 excelWorksheet.Cells[index + 2, 3].Value = post.IsPublished ? "Published" : "Unpublished";
                                 index++;
                             }
-                            excelPackage.SaveAs(new FileInfo(path));
+                            excelPackage.SaveAs(new FileInfo(saveFileDialog.FileName));
                             iMessage.ShowInfomation(iMessage.MT_0230,iMessage.IMSG_TRAN_0130);
                         }
                         else

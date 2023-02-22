@@ -30,7 +30,7 @@ namespace BulletinboardApp.User
         /// <param name="e"></param>
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            UserModel userModel = this.userDataGrid.CurrentItem as UserModel;
+            UserModel userModel = (UserModel)this.userDataGrid.CurrentItem as UserModel;
             if (userModel != null)
             {
                 this.NavigationService.Navigate(new BulletinboardApp.User.Edit(userModel.Id));

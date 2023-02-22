@@ -20,6 +20,6 @@
         /// <summary>
         /// Define logger container
         /// </summary>
-        public static CommonLibrary.iLog Log { get; set; }
+        public static CommonLibrary.iLog? Log { get; set; }
     }
 }

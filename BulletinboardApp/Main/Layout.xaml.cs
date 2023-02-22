@@ -2,6 +2,7 @@
 using Bulletinboard.Front.AppLibrary;
 using BulletinboardApp.Account;
 using BulletinboardApp.ViewModels;
+using System;
 using System.Windows;
 
 namespace BulletinboardApp.Main
@@ -39,7 +40,7 @@ namespace BulletinboardApp.Main
         /// <param name="e"></param>
         private void UserList_Clicked(object sender, RoutedEventArgs e)
         {
-            this.menuLayout.Navigate(new BulletinboardApp.User.List());
+            this.menuLayout.Navigate(this.CreateUriObject("User/List.xaml"));
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace BulletinboardApp.Main
         /// <param name="e"></param>
         private void CreateUserBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.menuLayout.Navigate(new BulletinboardApp.User.Create());
+            this.menuLayout.Navigate(this.CreateUriObject("User/Create.xaml"));
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace BulletinboardApp.Main
         /// <param name="e"></param>
         private void PostListBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.menuLayout.Navigate(new BulletinboardApp.Post.List());
+            this.menuLayout.Navigate(this.CreateUriObject("Post/List.xaml"));
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace BulletinboardApp.Main
         /// <param name="e"></param>
         private void CreatePost_Clicked(object sender, RoutedEventArgs e)
         {
-            this.menuLayout.Navigate(new BulletinboardApp.Post.Create());
+            this.menuLayout.Navigate(this.CreateUriObject("Post/Create.xaml"));
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace BulletinboardApp.Main
         /// <param name="e"></param>
         private void ProfileBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.menuLayout.Navigate(new BulletinboardApp.User.Profile(iAppSettings.LoginUser.Id));
+            this.menuLayout.Navigate(this.CreateUriObject("User/Profile.xaml"));
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace BulletinboardApp.Main
         /// <param name="e"></param>
         private void ChangePassBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.menuLayout.Navigate(new BulletinboardApp.User.ChangePass());
+            this.menuLayout.Navigate(this.CreateUriObject("User/ChangePass.xaml"));
         }
 
         /// <summary>
@@ -126,6 +127,10 @@ namespace BulletinboardApp.Main
             }
         }
 
+        private Uri CreateUriObject(string path)
+        {
+            return new Uri(path,UriKind.Relative);
+        }
         
     }
 }

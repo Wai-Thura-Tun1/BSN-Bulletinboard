@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:BulletinboardApp.Post"
       xmlns:ictrl="clr-namespace:Bulletinboard.Front.AppControls;assembly=AppControls"
       mc:Ignorable="d" 
-      d:DataContext=""
       Title="List"
       TextElement.FontSize="14"
       TextElement.FontWeight="Normal"
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
+      d:DataContext="{d:DesignInstance Type=local:PostViewModel}"
       Height="700"
       Width="1280"
       Background="{DynamicResource MaterialDesignPaper}">

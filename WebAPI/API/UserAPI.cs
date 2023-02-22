@@ -27,7 +27,7 @@ namespace Bulletinboard.Back.WebAPI.API
                 return Unauthorized();
             }
             UserRepository userRepository = new();
-            return await userRepository.GetUserList(objData.Keyword);
+            return await userRepository.GetUserList(objData.Keyword ?? "");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Bulletinboard.Back.WebAPI.API
         /// The <see cref="Task{ActionResult{List{Role}?}}"/>
         /// </returns>
         [HttpGet("GetRoleList")]
-        public async Task<ActionResult<List<Role>?>> GetRole()
+        public ActionResult<List<Role>?> GetRole()
         {
             Microsoft.Extensions.Primitives.StringValues requestHeaderValue;
             Request.Headers.TryGetValue(APISetting.KEY_APITOKEN, out requestHeaderValue);
@@ -46,7 +46,7 @@ namespace Bulletinboard.Back.WebAPI.API
                 return Unauthorized();
             }
             UserRepository userRepository = new();
-            return await userRepository.GetRoleList();
+            return userRepository.GetRoleList();
         }
 
         /// <summary>

@@ -9,11 +9,11 @@ namespace Bulletinboard.Back.DataAccess.Data
 
         [MaxLength(100)]
         [Column(TypeName = "varchar(100)")]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public bool IsPublished { get; set; }
 
@@ -23,7 +23,7 @@ namespace Bulletinboard.Back.DataAccess.Data
 
         [MaxLength(255)]
         [Column(TypeName = "varchar(255)")]
-        public string CreatedUserId { get; set; }
+        public string CreatedUserId { get; set; } = string.Empty;
 
         public DateTime? UpdatedDate { get; set; }
 

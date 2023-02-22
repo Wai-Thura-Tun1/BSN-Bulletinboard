@@ -30,8 +30,7 @@ namespace BulletinboardApp.Post
         /// <param name="e"></param>
         private void PostEditBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            PostModel? postModel = postDataGrid.CurrentItem as PostModel;
-            if (postModel != null)
+            if (postDataGrid.CurrentItem is PostModel postModel)
             {
                 this.NavigationService.Navigate(new BulletinboardApp.Post.Edit(postModel.Id));
             }

@@ -10,6 +10,7 @@
       TextElement.FontSize="14"
       TextElement.FontWeight="Normal"
       TextOptions.TextFormattingMode="Ideal"
+      d:DataContext="{d:DesignInstance Type=local:PostViewModel}"
       TextOptions.TextRenderingMode="Auto"
       Background="White">
     <Grid>

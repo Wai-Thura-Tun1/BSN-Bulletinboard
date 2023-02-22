@@ -8,7 +8,9 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// <summary>
         /// Constructor
         /// </summary>
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public User()
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.ConstructModel();
             this.Email = string.Empty;
@@ -19,7 +21,9 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// Constructor
         /// </summary>
         /// <param name="keyword"></param>
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public User(string keyword)
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.ConstructModel();
             this.Email = string.Empty;
@@ -32,7 +36,9 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// </summary>
         /// <param name="email"></param>
         /// <param name="pass"></param>
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public User(string email, string pass)
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.ConstructModel();
             this.Email = email;
@@ -156,17 +162,17 @@ namespace Bulletinboard.Front.AppLibrary.Model
         /// <summary>
         /// Define createduser
         /// </summary>
-        public string? CreatedUser { get; set; }
+        public string CreatedUser { get; set; }
 
         /// <summary>
         /// Define fullname
         /// </summary>
-        public string? FullName { get; set; }
+        public string FullName { get; set; }
 
         /// <summary>
         /// Define srole
         /// </summary>
-        public string? SRole { get; set; }
+        public string SRole { get; set; }
 
         /// <summary>
         /// Define sdob

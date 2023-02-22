@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BulletinboardApp.Main"
         xmlns:dc ="clr-namespace:BulletinboardApp"
+        xmlns:vm ="clr-namespace:BulletinboardApp.ViewModels"
         xmlns:ictrl="clr-namespace:Bulletinboard.Front.AppControls;assembly=AppControls" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         IsDisplayClosingMessage="False"
@@ -12,6 +13,7 @@
         mc:Ignorable="d"
         Background="White"
         Title="Layout" Height="600" Width="800">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

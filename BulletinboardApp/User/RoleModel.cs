@@ -25,7 +25,7 @@ namespace BulletinboardApp.User
         /// <summary>
         /// Define name
         /// </summary>
-        private string _name;
+        private string _name = string.Empty;
         public string Name
         {
             get

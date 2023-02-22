@@ -31,7 +31,9 @@ namespace BulletinboardApp.User
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public UserViewModel(int id)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             User = new();
             RoleList = new ObservableCollection<RoleModel>();
@@ -274,7 +276,7 @@ namespace BulletinboardApp.User
             UserList.Clear();
             using(var webApi = new iServiceUser())
             {
-                var getData = await webApi.GetAllAsync(User.Keyword);
+                var getData = await webApi.GetAllAsync(User.Keyword ?? "");
                 UserModel user;
                 if (getData.Count > 0)
                 {

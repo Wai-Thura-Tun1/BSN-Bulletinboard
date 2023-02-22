@@ -21,9 +21,9 @@ namespace Model
             this.UpdatedUserId = null;
             this.DeletedDate = null;
             this.DeletedUserId = null;
-            this.SPublished = null;
+            this.SPublished = string.Empty;
             this.CreatedAt = null;
-            this.CreatedBy = null;
+            this.CreatedBy = string.Empty;
             this.Keyword = string.Empty;
         }
 
@@ -85,7 +85,7 @@ namespace Model
         /// <summary>
         /// Define spublished
         /// </summary>
-        public string? SPublished { get; set; }
+        public string SPublished { get; set; }
 
         /// <summary>
         /// Define createdat
@@ -95,7 +95,7 @@ namespace Model
         /// <summary>
         /// Define createdby
         /// </summary>
-        public string? CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         /// <summary>
         /// Define datastatus

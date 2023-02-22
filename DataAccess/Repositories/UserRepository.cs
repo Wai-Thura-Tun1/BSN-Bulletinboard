@@ -11,7 +11,7 @@ namespace DataAccess.Repositories
         /// <summary>
         /// Define datacontext for user table
         /// </summary>
-        private DataContext<User> _dataContext;
+        private readonly DataContext<User> _dataContext;
 
         /// <summary>
         /// Constructor
@@ -55,7 +55,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return false;
             }
             
@@ -111,7 +111,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return new List<Model.User>();
             }
 
@@ -123,7 +123,7 @@ namespace DataAccess.Repositories
         /// <returns>
         /// The <see cref="Task{List{Model.Role}}"/>
         /// </returns>
-        public async Task<List<Model.Role>?> GetRoleList()
+        public List<Model.Role> GetRoleList()
         {
             try
             {
@@ -144,7 +144,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return new List<Model.Role>();
             }
         }
@@ -184,7 +184,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -226,7 +226,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -260,7 +260,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
@@ -301,7 +301,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return new Model.User();
             }
         }
@@ -335,7 +335,7 @@ namespace DataAccess.Repositories
             }
             catch(Exception ex)
             {
-                CommonSetting.Log.Logger.Error(ex.Message);
+                CommonSetting.Log?.Logger.Error(ex.Message);
                 return iConstance.RESULT_FAILURE;
             }
         }
